@@ -1,8 +1,8 @@
 const https = require('http');
 var CronJob = require('cron').CronJob;
 const TelegramBot = require('node-telegram-bot-api');
-// const token = "1117341186:AAEdTNCuXyPHUCLOaDlQcQgEwCyijHCqoIg"; //bitcoin
-const token = "1029352844:AAEXUaoppERzW3ypp2OedZVZoIfXWY0tryo"; // testLocal
+const token = "1117341186:AAEdTNCuXyPHUCLOaDlQcQgEwCyijHCqoIg"; //bitcoin
+// const token = "1029352844:AAEXUaoppERzW3ypp2OedZVZoIfXWY0tryo"; // testLocal
 const options = new URL('http://api.coindesk.com/v1/bpi/currentprice.json');
 const abedID = 629284243;
 const bot = new TelegramBot(token, {
