@@ -36,7 +36,7 @@ var job = new CronJob('* * * * *', function () {
     const req = https.request(options, res => {
         res.on('data', d => {
             let result = JSON.parse(d);
-            bot.sendMessage(`@bitcoin_gheymat`, `${result.bpi.USD.rate} 💲USD\n\n@bitcoin_gheymat `);
+            bot.sendMessage(`@bitcoin_gheymat`, `\n${result.bpi.USD.rate} 💲USD\n\n@bitcoin_gheymat `);
            
         })
     })
@@ -71,7 +71,8 @@ async function mainMenu(id) {
             "parse_mode": "Markdown",
             "reply_markup": {
                 "keyboard": [
-                    ["دربارۀ بیت کوین", `روش نصب \n coinomi`,"احراز هویت"],
+                    ["دربارۀ بیت کوین", `روش نصب coinomi`,"احراز هویت"],
+                    ["خرید بیت‌کوین", `فروض بیت‌کوین coinomi`,"فروش کیف پول سخت‌افزاری"],
                     
                 ],
                 "one_time_keyboard": true
