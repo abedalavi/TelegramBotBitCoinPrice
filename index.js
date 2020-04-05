@@ -48,7 +48,7 @@ job1.start();
 var job2 = new CronJob('32 * * * *', async function () {
     request('https://openexchangerates.org/api/latest.json?app_id=14d883a9fcd8479ca6160514385ffd3f', {
         json: true
-    }, (err, res, body) => {
+    }, async (err, res, body) => {
         if (err) {
             console.log(err);
             bot.sendMessage(abedID,err);
