@@ -124,7 +124,7 @@ bot.onText(/احراز هویت$/, async (msg) => {
             bot.sendMessage(msg.from.id, `شما قبلا احرازهویت کرده‌اید!\nلطفا منتظر تایید باشید!\nدر صورت نیاز به آیدی زیر پیام دهید!\n${adverID}\n✅`)
             return;
         }
-        setEhrazsetEhraz.add(msg.from.id);
+        setEhraz.add(msg.from.id);
         await bot.sendMessage(msg.from.id, `لطفا برای احرازهویت مطابق زیر یک عکس در همینجا ارسال کنید!\nعکس کارت ملی و کارت بانکی و متن مورد نظر را در یک دست گرفته و عکس تهیه کنید!\n✅`);
         await bot.sendPhoto(msg.from.id, './auth.jpg')
     } catch (e) {
