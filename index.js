@@ -28,7 +28,7 @@ process.on('exit', (code) => {
 });
 bot.sendMessage(abedID, new Date() + ": Program Started!").catch(e => {});
 ///////////////////////////////job for crypto//////////////////////////////////////////
-var job1 = new CronJob('* * * * *', function () {
+var job1 = new CronJob('*/5 * * * *', function () {
     request('http://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,DOGE&tsyms=USD&api_key=40c6a434d7e306a35fa81943078ca30b652be0a09dce8fdc5f38399fc2169ef3', {
         json: true
     }, (err, res, body) => {
