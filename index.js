@@ -1,10 +1,32 @@
 const request = require('request');
+const mysql = require('mysql');
+const fs = require('fs');
 var CronJob = require('cron').CronJob;
 const TelegramBot = require('node-telegram-bot-api');
+const adverID = '@advertisingmanger';
+const abedID = 922653106; //5051697
+var setEhraz = new Set();
+/////////////local/////////////
+// const token = '1029352844:AAEXUaoppERzW3ypp2OedZVZoIfXWY0tryo'; //@test_localabed_bot
+// let pool = mysql.createPool({
+//     connectionLimit: 50,
+//     host: '127.0.0.1',
+//     user: 'root',
+//     password: '2019087',
+//     database: 'alavibo1_bitcoin',
+//     multipleStatements: true
+// });
+///////////// تلکابین 1 alavibot/////////////
 const token = "1117341186:AAEdTNCuXyPHUCLOaDlQcQgEwCyijHCqoIg"; //bitcoin
-// const token = "1029352844:AAEXUaoppERzW3ypp2OedZVZoIfXWY0tryo"; // testLocal
-
-const abedID = 629284243;
+let pool = mysql.createPool({
+    connectionLimit: 50,
+    host: 'localhost',
+    user: 'alavibo1_bitcoin_user',
+    password: '@Lavi2019087',
+    database: 'alavibo1_bitcoin',
+    multipleStatements: true
+});
+///////////////////////////////////////////////////////////////////////
 const bot = new TelegramBot(token, {
     polling: {
         params: {
@@ -12,7 +34,7 @@ const bot = new TelegramBot(token, {
         }
     },
 });
-///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
 process.on('uncaughtException', (ex) => {
     console.log(new Date() + ': Uncaught Exception: ' + ex.message);
 });
@@ -34,13 +56,13 @@ var job1 = new CronJob('*/5 * * * *', function () {
     }, (err, res, body) => {
         if (err) {
             console.log(err);
-            bot.sendMessage(abedID,err);
+            bot.sendMessage(abedID, err);
         }
         let BTC = res.body.BTC.USD;
         let ETH = res.body.ETH.USD;
         let LTC = res.body.LTC.USD;
         let DOGE = res.body.DOGE.USD;
-        bot.sendMessage(`@bitcoin_gheymat`,`Bitcoin: ${BTC} 💲 USD\n\nEthereum: ${ETH} 💲 USD\n\nLitecoin: ${LTC} 💲 USD\n\nDogecoin: ${DOGE} 💲 USD\n\n👉@bitcoin_gheymat`);
+        bot.sendMessage(`@bitcoin_gheymat`, `Bitcoin: ${BTC} 💲 USD\n\nEthereum: ${ETH} 💲 USD\n\nLitecoin: ${LTC} 💲 USD\n\nDogecoin: ${DOGE} 💲 USD\n\n👉@bitcoin_gheymat`);
     });
 }, null, true, 'America/Los_Angeles');
 job1.start();
@@ -51,12 +73,12 @@ var job2 = new CronJob('32 * * * *', async function () {
     }, async (err, res, body) => {
         if (err) {
             console.log(err);
-            bot.sendMessage(abedID,err);
+            bot.sendMessage(abedID, err);
         }
         let r = res.body.rates;
         let msg = `یک دلار آمریکا برابر است با 👇\n 🇪🇺 EUR: ${r.EUR} یورو \n 🏴󠁧󠁢󠁥󠁮󠁧󠁿 GBP: ${r.GBP} پوند انگلستان \n 🇨🇦 CAD: ${r.CAD} دلارکانادا \n 🇦🇺 AUD: ${r.AUD} دلاراسترالیا \n 🇳🇿 NZD: ${r.NZD} دلارنیوزیلند \n 🇨🇳 CNY: ${r.CNY} یوهان چین \n 🇯🇵 JPY: ${r.JPY} ین ژاپن \n 🇨🇭 CHF: ${r.CHF} فرانک سوئیس \n 🇸🇪 SEK: ${r.SEK} کرون سوئد \n 🇳🇴 NOK: ${r.NOK} کرون نروژ \n 🇩🇰 DKK: ${r.DKK} کرون دانمارک \n 🇹🇷 TRY: ${r.TRY} لیر ترکیه \n 🇬🇪 GEL: ${r.GEL} لاری گرجستان \n 🇦🇲 AMD: ${r.AMD} درام ارمنستان \n 🇦🇿 AzN: ${r.AZN} منات آذربایجان \n 🇹🇲 TMM: ${r.TMT} منات ترکمنستان \n 🇦🇫 AFN: ${r.AFN} افغانی افغانستان \n 🇵🇰 PKR: ${r.PKR} روپیه پاکستان \n 🇮🇳 INR: ${r.INR} روپیه هند \n 🇸🇦 SAR: ${r.SAR} ریال صعودی \n 🇮🇶 IQD: ${r.IQD} دینار عراق \n 🇶🇦 QAR: ${r.QAR} ریال قطر \n 🇦🇪 AED: ${r.AED} درهم امارات \n 🇴🇲 OMR: ${r.OMR} دینار عمان \n 🇧🇭 BHD: ${r.BHD} دینار بحرین \n 🇰🇼 KWD: ${r.KWD} دینار کویت \n 🇸🇾 SYP: ${r.SYP} لیر سوریه \n 🇲🇾 MYR: ${r.MYR} رینگت مالزی \n 🇹🇭 THB: ${r.THB} بت تایلند \n\n👉@bitcoin_gheymat `;
-        let res1 = await bot.sendMessage(`@bitcoin_gheymat`,msg);
-        bot.pinChatMessage('@bitcoin_gheymat',res1.message_id);
+        let res1 = await bot.sendMessage(`@bitcoin_gheymat`, msg);
+        bot.pinChatMessage('@bitcoin_gheymat', res1.message_id);
 
     });
 }, null, true, 'America/Los_Angeles');
@@ -95,4 +117,80 @@ async function mainMenu(id) {
         console.log(new Date() + 'main menu: ' + e);
     }
 };
-//////////////////////////
+//////////////////////////احراز هویت ///////////
+bot.onText(/احراز هویت$/, async (msg) => {
+    try {
+        if (await checkUserExist(msg.from.id)) {
+            bot.sendMessage(msg.from.id, `شما قبلا احرازهویت کرده‌اید!\nلطفا منتظر تایید باشید!\nدر صورت نیاز به آیدی زیر پیام دهید!\n${adverID}\n✅`)
+            return;
+        }
+        setEhrazsetEhraz.add(msg.from.id);
+        await bot.sendMessage(msg.from.id, `لطفا برای احرازهویت مطابق زیر یک عکس در همینجا ارسال کنید!\nعکس کارت ملی و کارت بانکی و متن مورد نظر را در یک دست گرفته و عکس تهیه کنید!\n✅`);
+        await bot.sendPhoto(msg.from.id, './auth.jpg')
+    } catch (e) {
+        console.log(new Date() + 'ehraz error: ' + e.message);
+        setEhraz.delete(msg.from.id);
+    }
+});
+bot.on('photo', async (msg) => {
+    try {
+        if (setEhraz.has(msg.from.id)) {
+            setEhraz.delete(msg.from.id);
+            let result = await getQuery("INSERT INTO `bitcoin_users` (`name`,`telegramid`,`telegramusername`,`isaccepted`)VALUES(?,?,?,?);", [msg.from.first_name, msg.from.id, msg.from.username == undefined ? '' : msg.from.username, 0]);
+            console.log(result);
+            let captionOfImage = `آیدی:${result.insertId}\n نام: ${msg.from.first_name}\nیوزر تلگرامی:${msg.from.username == undefined ? '' : msg.from.username}\nآیدی تلگرامی:${msg.from.id}\nتاریخ ارسال:${new Date(msg.date * 1000).toLocaleString('fa-IR')}`;
+            await bot.sendPhoto(abedID, msg.photo[0].file_id, {
+                caption: captionOfImage
+            });
+            await bot.sendMessage(msg.from.id, `عکس دریافت شد!\nلطفا منتظر تایید باشید!\nدر صورت تایید یک پیام در همینجا به شما داده می‌شود و شما می‌توانید درخواست خرید و فروش بدهید!\n✅`);
+        } else {
+            await bot.deleteMessage(msg.chat.id, msg.message_id);
+        }
+    } catch (e) {
+        console.log(new Date() + 'photo error: ' + e.message);
+    }
+})
+//////////////////////////احراز هویت ///////////
+bot.onText(/^t\s*\d+\s*$/i, async (msg) => {
+    try {
+        if (checkAdmin(msg.from.id)) {
+            let id = msg.text.substr(1).trim();
+            let result = await getQuery("update bitcoin_users set isaccepted = 1 where id = ?", [id]);
+            console.log(result);
+            if (result.affectedRows == 0) {
+                await bot.sendMessage(abedID, `کاربر مورد نظر یافت نشد!\n✅`);
+                return;
+            } else {
+                await bot.sendMessage(abedID, `کاربر شمارۀ ${id} تایید شد!\n✅`);
+                let user = await getQuery(`select * from bitcoin_users where id = ?`, [id]);
+                await bot.sendMessage(user[0].telegramid, `احراز هویت شما با موفقیت انجام شد!\nاکنون می‌توانید درخواست خرید و فروش بدهید!\n✅`);
+            }
+        }
+    } catch (e) {
+        console.log(new Date() + 't error' + e.message);
+    }
+})
+////////////////////getQuery////////////////////
+function getQuery(query, params) {
+    return new Promise((resolve, reject) => {
+        console.log(query);
+        pool.query(query, params, (err, res) => {
+            if (err) {
+                reject('Error on query: ' + err.message);
+            }
+            resolve(res);
+        });
+    });
+};
+/////////////////////check user exist/////////////////////////////
+async function checkUserExist(id) {
+    let user = await getQuery(`select isaccepted from bitcoin_users where telegramid = ?`, [id]);
+    if (user == '') {
+        return false;
+    }
+    return true;
+}
+////////////////////check admin/////////////////////
+function checkAdmin(id) {
+    return (id == abedID)
+}

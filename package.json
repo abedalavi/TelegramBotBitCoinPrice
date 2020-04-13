@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "cron": "^1.8.2",
+    "mysql": "^2.18.1",
     "node-telegram-bot-api": "^0.40.0",
     "request": "^2.88.2"
   }
