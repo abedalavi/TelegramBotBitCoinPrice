@@ -146,32 +146,21 @@ bot.onText(/فروش کیف پول سخت‌افزاری$/, async (msg) => {
 //////////////////////////فروش ارز //////////
 bot.onText(/فروش ارز$/, async (msg) => {
     try {
-        if (!await checkUserExist(msg.from.id)) {
-            await bot.sendMessage(msg.from.id, `شما هنوز احرازهویت انجام نداده‌اید!\nلطفا بر روی گزینۀ احرازهویت بزنید!\n❗️`)
-            return;
-        } else if (await checkUserExist(msg.from.id)) {
-            if (!await checkUserAccepted(msg.from.id)) {
-                await bot.sendMessage(msg.from.id, `هنوز احرازهویت شما تایید نشده است!\nلطفا منتظر تایید باشید!\nدر صورت نیاز به آیدی زیر پیام دهید!\n${adverID}\n❗️`)
-                return;
-            } else if (await checkUserAccepted(msg.from.id)) {
-                await bot.sendMessage(msg.from.id, `لطفا ارز مورد نظر را انتخاب کنید!`, {
-                    "parse_mode": "Markdown",
-                    "reply_markup": {
-                        "inline_keyboard": [
-                            [{
-                                "text": `بیت کوین`,
-                                "callback_data": `sellbitcoin,${msg.from.id}`
-                            }],
-                            [{
-                                "text": `اتریوم`,
-                                "callback_data": `selleth,${msg.from.id}`
-                            }]
-                        ]
-                    }
-                });
-                return;
+        await bot.sendMessage(msg.from.id, `لطفا ارز مورد نظر را انتخاب کنید!`, {
+            "parse_mode": "Markdown",
+            "reply_markup": {
+                "inline_keyboard": [
+                    [{
+                        "text": `بیت کوین`,
+                        "callback_data": `sellbitcoin,${msg.from.id}`
+                    }],
+                    [{
+                        "text": `اتریوم`,
+                        "callback_data": `selleth,${msg.from.id}`
+                    }]
+                ]
             }
-        }
+        });
     } catch (e) {
         console.log(new Date() + 'foroosh error: ' + e.message);
     }
@@ -212,7 +201,6 @@ bot.onText(/خرید ارز$/, async (msg) => {
 });
 ///////////////////////////call back
 bot.on('callback_query', async (msg) => {
-    // console.log(msg.id);
     try {
         if (callback_click.has(msg.from.id)) {
             return;
@@ -262,7 +250,7 @@ bot.on('callback_query', async (msg) => {
     }
 })
 ////////////////////////عدد///////////////
-bot.onText(/\d+/, async (msg) => {
+bot.onText(/^\d+$/, async (msg) => {
     try {
         if (!await checkUserExist(msg.from.id)) {
             await bot.sendMessage(msg.from.id, `شما هنوز احرازهویت انجام نداده‌اید!\nلطفا بر روی گزینۀ احرازهویت بزنید!\n❗️`)
