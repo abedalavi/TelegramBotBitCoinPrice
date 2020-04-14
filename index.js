@@ -252,33 +252,23 @@ bot.on('callback_query', async (msg) => {
 ////////////////////////عدد///////////////
 bot.onText(/^\d+$/, async (msg) => {
     try {
-        if (!await checkUserExist(msg.from.id)) {
-            await bot.sendMessage(msg.from.id, `شما هنوز احرازهویت انجام نداده‌اید!\nلطفا بر روی گزینۀ احرازهویت بزنید!\n❗️`)
-            return;
-        } else if (await checkUserExist(msg.from.id)) {
-            if (!await checkUserAccepted(msg.from.id)) {
-                await bot.sendMessage(msg.from.id, `هنوز احرازهویت شما تایید نشده است!\nلطفا منتظر تایید باشید!\nدر صورت نیاز به آیدی زیر پیام دهید!\n${adverID}\n❗️`)
-                return;
-            } else if (await checkUserAccepted(msg.from.id)) {
-                let user = await getQuery(`select * from bitcoin_users where telegramid = ?`, [msg.from.id]);
-                if (setBuyBitcoin.has(msg.from.id)) {
-                    await bot.sendMessage(msg.from.id, `درخواست شما ارسال شد!\nلطفا منتظر بمانید!\n✅`);
-                    await bot.sendMessage(abedID, `آیدی شمارۀ ${user[0].id}\nنام کاربری تلگرامی:@${user[0].telegramusername} \n درخواست خرید مقدار ${msg.text} بیت کوین را دارد!`);
-                } else if (setBuyEth.has(msg.from.id)) {
-                    await bot.sendMessage(msg.from.id, `درخواست شما ارسال شد!\nلطفا منتظر بمانید!\n✅`);
-                    await bot.sendMessage(abedID, `آیدی شمارۀ ${user[0].id}\nنام کاربری تلگرامی:@${user[0].telegramusername} \n درخواست خرید مقدار ${msg.text} اتریوم را دارد!`);
-                } else if (setSellBitcoin.has(msg.from.id)) {
-                    await bot.sendMessage(msg.from.id, `درخواست شما ارسال شد!\nلطفا منتظر بمانید!\n✅`);
-                    await bot.sendMessage(abedID, `آیدی شمارۀ ${user[0].id}\nنام کاربری تلگرامی:@${user[0].telegramusername} \n درخواست فروش مقدار ${msg.text} بیت کوین را دارد!`);
-                } else if (setSellEth.has(msg.from.id)) {
-                    await bot.sendMessage(msg.from.id, `درخواست شما ارسال شد!\nلطفا منتظر بمانید!\n✅`);
-                    await bot.sendMessage(abedID, `آیدی شمارۀ ${user[0].id}\nنام کاربری تلگرامی:@${user[0].telegramusername} \n درخواست فروش مقدار ${msg.text} اتریوم را دارد!`);
-                } else {
-                    await bot.deleteMessage(msg.chat.id, msg.message_id);
-                }
-                clearSets(msg.from.id);
-            }
+        let user = await getQuery(`select * from bitcoin_users where telegramid = ?`, [msg.from.id]);
+        if (setBuyBitcoin.has(msg.from.id)) {
+            await bot.sendMessage(msg.from.id, `درخواست شما ارسال شد!\nلطفا منتظر بمانید!\n✅`);
+            await bot.sendMessage(abedID, `آیدی شمارۀ ${user[0].id}\nنام کاربری تلگرامی:@${user[0].telegramusername} \n درخواست خرید مقدار ${msg.text} بیت کوین را دارد!`);
+        } else if (setBuyEth.has(msg.from.id)) {
+            await bot.sendMessage(msg.from.id, `درخواست شما ارسال شد!\nلطفا منتظر بمانید!\n✅`);
+            await bot.sendMessage(abedID, `آیدی شمارۀ ${user[0].id}\nنام کاربری تلگرامی:@${user[0].telegramusername} \n درخواست خرید مقدار ${msg.text} اتریوم را دارد!`);
+        } else if (setSellBitcoin.has(msg.from.id)) {
+            await bot.sendMessage(msg.from.id, `درخواست شما ارسال شد!\nلطفا منتظر بمانید!\n✅`);
+            await bot.sendMessage(abedID, `آیدی شمارۀ ${user[0].id}\nنام کاربری تلگرامی:@${user[0].telegramusername} \n درخواست فروش مقدار ${msg.text} بیت کوین را دارد!`);
+        } else if (setSellEth.has(msg.from.id)) {
+            await bot.sendMessage(msg.from.id, `درخواست شما ارسال شد!\nلطفا منتظر بمانید!\n✅`);
+            await bot.sendMessage(abedID, `آیدی شمارۀ ${user[0].id}\nنام کاربری تلگرامی:@${user[0].telegramusername} \n درخواست فروش مقدار ${msg.text} اتریوم را دارد!`);
+        } else {
+            await bot.deleteMessage(msg.chat.id, msg.message_id);
         }
+        clearSets(msg.from.id);
     } catch (e) {
         console.log(new Date() + 'digit error: ' + e.message);
         clearSets(msg.from.id);
