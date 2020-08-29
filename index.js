@@ -61,7 +61,7 @@ var job1 = new CronJob(
     "*/5 * * * *",
     function () {
         request(
-            "http://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,DOGE,YFI&tsyms=USD&api_key=40c6a434d7e306a35fa81943078ca30b652be0a09dce8fdc5f38399fc2169ef3",
+            "http://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,DOGE,YFI,BCH,BSV,ZEC,BNB&tsyms=USD&api_key=40c6a434d7e306a35fa81943078ca30b652be0a09dce8fdc5f38399fc2169ef3",
             {
                 json: true,
             },
@@ -75,13 +75,17 @@ var job1 = new CronJob(
                 let LTC = res.body.LTC.USD;
                 let DOGE = res.body.DOGE.USD;
                 let YFI = res.body.YFI.USD;
+                let BCH = res.body.BCH.USD;
+                let BSV = res.body.BSV.USD;
+                let ZEC = res.body.ZEC.USD;
+                let BNB = res.body.BNB.USD;
                 bot.sendMessage(
                     `@bitcoin_gheymat`,
-                    `Bitcoin: ${BTC} 💲 USD\n\nEthereum: ${ETH} 💲 USD\n\nLitecoin: ${LTC} 💲 USD\n\nDogecoin: ${DOGE} 💲 USD\n\n Yearn.finance: ${YFI} 💲 USD\n\n👉@bitcoin_gheymat`
+                    `Bitcoin: ${BTC} 💲 USD\n\nEthereum: ${ETH} 💲 USD\n\nLitecoin: ${LTC} 💲 USD\n\nDogecoin: ${DOGE} 💲 USD\n\n Yearn Finance: ${YFI} 💲 USD\n\n Bitcoin Cash: ${BCH} 💲 USD\n\n Bitcoin SV: ${BSV} 💲 USD\n\n ZCash: ${ZEC} 💲 USD\n\n Binance Coin: ${BNB} 💲 USD\n\n👉@bitcoin_gheymat`
                 );
                 bot.sendMessage(
                     `@digi_price`,
-                    `Bitcoin: ${BTC} 💲 USD\n\nEthereum: ${ETH} 💲 USD\n\nLitecoin: ${LTC} 💲 USD\n\nDogecoin: ${DOGE} 💲 USD\n\n Yearn.finance: ${YFI} 💲👉@digi_price`
+                    `Bitcoin: ${BTC} 💲 USD\n\nEthereum: ${ETH} 💲 USD\n\nLitecoin: ${LTC} 💲 USD\n\nDogecoin: ${DOGE} 💲 USD\n\n Yearn Finance: ${YFI} 💲 USD\n\n Bitcoin Cash: ${BCH} 💲 USD\n\n Bitcoin SV: ${BSV} 💲 USD\n\n ZCash: ${ZEC} 💲 USD\n\n Binance Coin: ${BNB} 💲 USD\n\n👉@digi_price`
                 );
                 console.log(new Date() + `cryptocurrency successfully posted!`);
             }
