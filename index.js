@@ -21,7 +21,7 @@ var callback_click = new Set();
 //     database: 'alavibo1_bitcoin',
 //     multipleStatements: true
 // });
-///////////// تلکابین 1 alavibot/////////////
+/////////////alavibot/////////////
 
 const token = process.env.myToken; //bitcoin
 
@@ -79,13 +79,15 @@ var job1 = new CronJob(
                 let BSV = res.body.BSV.USD;
                 let ZEC = res.body.ZEC.USD;
                 let BNB = res.body.BNB.USD;
+                let XRP = res.body.XRP.USD;
+                let TRX = res.body.TRX.USD;
                 bot.sendMessage(
                     `@bitcoin_gheymat`,
-                    `Bitcoin: ${BTC} 💲 USD\n\nEthereum: ${ETH} 💲 USD\n\nLitecoin: ${LTC} 💲 USD\n\nDogecoin: ${DOGE} 💲 USD\n\n Yearn Finance: ${YFI} 💲 USD\n\n Bitcoin Cash: ${BCH} 💲 USD\n\n Bitcoin SV: ${BSV} 💲 USD\n\n ZCash: ${ZEC} 💲 USD\n\n Binance Coin: ${BNB} 💲 USD\n\n👉@bitcoin_gheymat`
+                    `Bitcoin: ${BTC} 💲 USD\n\nEthereum: ${ETH} 💲 USD\n\nLitecoin: ${LTC} 💲 USD\n\nDogecoin: ${DOGE} 💲 USD\n\n Yearn Finance: ${YFI} 💲 USD\n\n Bitcoin Cash: ${BCH} 💲 USD\n\n Bitcoin SV: ${BSV} 💲 USD\n\n ZCash: ${ZEC} 💲 USD\n\n Binance Coin: ${BNB} 💲 USD\n\n XRP: ${XRP} 💲 USD\n\n TRON: ${TRX} 💲 USD👉@bitcoin_gheymat`
                 );
                 bot.sendMessage(
                     `@digi_price`,
-                    `Bitcoin: ${BTC} 💲 USD\n\nEthereum: ${ETH} 💲 USD\n\nLitecoin: ${LTC} 💲 USD\n\nDogecoin: ${DOGE} 💲 USD\n\n Yearn Finance: ${YFI} 💲 USD\n\n Bitcoin Cash: ${BCH} 💲 USD\n\n Bitcoin SV: ${BSV} 💲 USD\n\n ZCash: ${ZEC} 💲 USD\n\n Binance Coin: ${BNB} 💲 USD\n\n👉@digi_price`
+                    `Bitcoin: ${BTC} 💲 USD\n\nEthereum: ${ETH} 💲 USD\n\nLitecoin: ${LTC} 💲 USD\n\nDogecoin: ${DOGE} 💲 USD\n\n Yearn Finance: ${YFI} 💲 USD\n\n Bitcoin Cash: ${BCH} 💲 USD\n\n Bitcoin SV: ${BSV} 💲 USD\n\n ZCash: ${ZEC} 💲 USD\n\n Binance Coin: ${BNB} 💲 USD\n\n XRP: ${XRP} 💲 USD\n\n TRON: ${TRX} 💲 USD👉@digi_price`
                 );
                 console.log(new Date() + `cryptocurrency successfully posted!`);
             }
