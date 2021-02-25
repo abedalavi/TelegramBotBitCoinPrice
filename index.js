@@ -61,7 +61,7 @@ var job1 = new CronJob(
   "*/5 * * * *",
   function () {
     request(
-      "http://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,DOGE,BNB,XRP,TRX,XLM,SXP,ZIL&tsyms=USD&api_key=40c6a434d7e306a35fa81943078ca30b652be0a09dce8fdc5f38399fc2169ef3",
+      "http://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,DOGE,BNB,XRP,TRX,XLM,SXP,ZIL,ADA,DOT,BTT,NPXS,LINK,VET&tsyms=USD&api_key=40c6a434d7e306a35fa81943078ca30b652be0a09dce8fdc5f38399fc2169ef3",
       {
         json: true,
       },
@@ -80,13 +80,19 @@ var job1 = new CronJob(
         let XLM = res.body.XLM.USD;
         let SXP = res.body.SXP.USD;
         let ZIL = res.body.ZIL.USD;
+        let ADA = res.body.ADA.USD;
+        let DOT = res.body.DOT.USD;
+        let BTT = res.body.BTT.USD;
+        let NPXS = res.body.NPXS.USD;
+        let LINK = res.body.LINK.USD;
+        let VET = res.body.VET.USD;
         bot.sendMessage(
           `@bitcoin_gheymat`,
-          `Bitcoin: ${BTC} 💲 USD\nEthereum: ${ETH} 💲 USD\nLitecoin: ${LTC} 💲 USD\nDogecoin: ${DOGE} 💲 USD\nBNB: ${BNB} 💲 USD\nXRP: ${XRP} 💲 USD\nTRX: ${TRX} 💲 USD\nXLM: ${XLM} 💲 USD\nSXP: ${SXP} 💲 USD\nZIL: ${ZIL} 💲 USD\n👉@bitcoin_gheymat`
+          `Bitcoin: ${BTC} 💲 USD\nEthereum: ${ETH} 💲 USD\nLitecoin: ${LTC} 💲 USD\nDogecoin: ${DOGE} 💲 USD\nBNB: ${BNB} 💲 USD\nXRP: ${XRP} 💲 USD\nTRX: ${TRX} 💲 USD\nXLM: ${XLM} 💲 USD\nSXP: ${SXP} 💲 USD\nZIL: ${ZIL} 💲 USD\nADA: ${ADA} 💲 USD\nDOT: ${DOT} 💲 USD\nBTT: ${BTT} 💲 USD\nNPXS: ${NPXS} 💲 USD\nLINK: ${LINK} 💲 USD\nVET: ${VET} 💲 USD\n👉@bitcoin_gheymat`
         );
         bot.sendMessage(
           `@digi_price`,
-          `Bitcoin: ${BTC} 💲 USD\nEthereum: ${ETH} 💲 USD\nLitecoin: ${LTC} 💲 USD\nDogecoin: ${DOGE} 💲 USD\nBNB: ${BNB} 💲 USD\nXRP: ${XRP} 💲 USD\nTRX: ${TRX} 💲 USD\nXLM: ${XLM} 💲 USD\nSXP: ${SXP} 💲 USD\nZIL: ${ZIL} 💲 USD\n👉@digi_price`
+          `Bitcoin: ${BTC} 💲 USD\nEthereum: ${ETH} 💲 USD\nLitecoin: ${LTC} 💲 USD\nDogecoin: ${DOGE} 💲 USD\nBNB: ${BNB} 💲 USD\nXRP: ${XRP} 💲 USD\nTRX: ${TRX} 💲 USD\nXLM: ${XLM} 💲 USD\nSXP: ${SXP} 💲 USD\nZIL: ${ZIL} 💲 USD\nADA: ${ADA} 💲 USD\nDOT: ${DOT} 💲 USD\nBTT: ${BTT} 💲 USD\nNPXS: ${NPXS} 💲 USD\nLINK: ${LINK} 💲 USD\nVET: ${VET} 💲 USD\n👉@digi_price`
         );
         console.log(new Date() + `cryptocurrency successfully posted!`);
       }
