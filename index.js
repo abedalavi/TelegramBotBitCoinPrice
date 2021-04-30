@@ -61,7 +61,7 @@ var job1 = new CronJob(
   "*/5 * * * *",
   function () {
     request(
-      "http://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,DOGE,BNB,XRP,TRX,XLM,SXP,ZIL,ADA,DOT,BTT,NPXS,LINK,VET&tsyms=USD&api_key=40c6a434d7e306a35fa81943078ca30b652be0a09dce8fdc5f38399fc2169ef3",
+      "http://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,DOGE,BNB,XRP,TRX,XLM,SXP,ZIL,ADA,DOT,BTT,NPXS,LINK,VET,WIN,PUNDIX,VTHO,EOS,XTZ,THETA,XMR,ATOM,ALGO,AAVE,AVAX,CHZ,HBAR,SHIB,FREE&tsyms=USD&api_key=40c6a434d7e306a35fa81943078ca30b652be0a09dce8fdc5f38399fc2169ef3",
       {
         json: true,
       },
@@ -86,13 +86,29 @@ var job1 = new CronJob(
         let NPXS = res.body.NPXS.USD;
         let LINK = res.body.LINK.USD;
         let VET = res.body.VET.USD;
+        let WIN = res.body.WIN.USD;
+        let PUNDIX = res.body.PUNDIX.USD;
+        let VTHO = res.body.VTHO.USD;
+        let EOS = res.body.EOS.USD;
+        let XTZ = res.body.XTZ.USD;
+        let THETA = res.body.THETA.USD;
+        let XMR = res.body.XMR.USD;
+        let ATOM = res.body.ATOM.USD;
+        let ALGO = res.body.ALGO.USD;
+        let AAVE = res.body.AAVE.USD;
+        let AVAX = res.body.AVAX.USD;
+        let CHZ = res.body.CHZ.USD;
+        let HBAR = res.body.HBAR.USD;
+        let SHIB = res.body.SHIB.USD;
+        let FREE = res.body.FREE.USD;
+
         bot.sendMessage(
           `@bitcoin_gheymat`,
-          `Bitcoin: ${BTC} 💲 USD\nEthereum: ${ETH} 💲 USD\nLitecoin: ${LTC} 💲 USD\nDogecoin: ${DOGE} 💲 USD\nBNB: ${BNB} 💲 USD\nXRP: ${XRP} 💲 USD\nTRX: ${TRX} 💲 USD\nXLM: ${XLM} 💲 USD\nSXP: ${SXP} 💲 USD\nZIL: ${ZIL} 💲 USD\nADA: ${ADA} 💲 USD\nDOT: ${DOT} 💲 USD\nBTT: ${BTT} 💲 USD\nNPXS: ${NPXS} 💲 USD\nLINK: ${LINK} 💲 USD\nVET: ${VET} 💲 USD\n👉@bitcoin_gheymat`
+          `Bitcoin: ${BTC} 💲 USD\nEthereum: ${ETH} 💲 USD\nLitecoin: ${LTC} 💲 USD\nDogecoin: ${DOGE} 💲 USD\nBNB: ${BNB} 💲 USD\nXRP: ${XRP} 💲 USD\nTRX: ${TRX} 💲 USD\nXLM: ${XLM} 💲 USD\nSXP: ${SXP} 💲 USD\nZIL: ${ZIL} 💲 USD\nADA: ${ADA} 💲 USD\nDOT: ${DOT} 💲 USD\nBTT: ${BTT} 💲 USD\nNPXS: ${NPXS} 💲 USD\nLINK: ${LINK} 💲 USD\nVET: ${VET} 💲 USD\nWIN: ${WIN} 💲 USD\nPUNDIX: ${PUNDIX} 💲 USD\nVTHO: ${VTHO} 💲 USD\nEOS: ${EOS} 💲 USD\nXTZ: ${XTZ} 💲 USD\nTHETA: ${THETA} 💲 USD\nXMR: ${XMR} 💲 USD\nATOM: ${ATOM} 💲 USD\nALGO: ${ALGO} 💲 USD\nAAVE: ${AAVE} 💲 USD\nAVAX: ${AVAX} 💲 USD\nCHZ: ${CHZ} 💲 USD\nHBAR: ${HBAR} 💲 USD\nSHIB: ${SHIB} 💲 USD\nFREE: ${FREE} 💲 USD\n👉@bitcoin_gheymat`
         );
         bot.sendMessage(
           `@digi_price`,
-          `Bitcoin: ${BTC} 💲 USD\nEthereum: ${ETH} 💲 USD\nLitecoin: ${LTC} 💲 USD\nDogecoin: ${DOGE} 💲 USD\nBNB: ${BNB} 💲 USD\nXRP: ${XRP} 💲 USD\nTRX: ${TRX} 💲 USD\nXLM: ${XLM} 💲 USD\nSXP: ${SXP} 💲 USD\nZIL: ${ZIL} 💲 USD\nADA: ${ADA} 💲 USD\nDOT: ${DOT} 💲 USD\nBTT: ${BTT} 💲 USD\nNPXS: ${NPXS} 💲 USD\nLINK: ${LINK} 💲 USD\nVET: ${VET} 💲 USD\n👉@digi_price`
+          `Bitcoin: ${BTC} 💲 USD\nEthereum: ${ETH} 💲 USD\nLitecoin: ${LTC} 💲 USD\nDogecoin: ${DOGE} 💲 USD\nBNB: ${BNB} 💲 USD\nXRP: ${XRP} 💲 USD\nTRX: ${TRX} 💲 USD\nXLM: ${XLM} 💲 USD\nSXP: ${SXP} 💲 USD\nZIL: ${ZIL} 💲 USD\nADA: ${ADA} 💲 USD\nDOT: ${DOT} 💲 USD\nBTT: ${BTT} 💲 USD\nNPXS: ${NPXS} 💲 USD\nLINK: ${LINK} 💲 USD\nVET: ${VET} 💲 USD\nWIN: ${WIN} 💲 USD\nPUNDIX: ${PUNDIX} 💲 USD\nVTHO: ${VTHO} 💲 USD\nEOS: ${EOS} 💲 USD\nXTZ: ${XTZ} 💲 USD\nTHETA: ${THETA} 💲 USD\nXMR: ${XMR} 💲 USD\nATOM: ${ATOM} 💲 USD\nALGO: ${ALGO} 💲 USD\nAAVE: ${AAVE} 💲 USD\nAVAX: ${AVAX} 💲 USD\nCHZ: ${CHZ} 💲 USD\nHBAR: ${HBAR} 💲 USD\nSHIB: ${SHIB} 💲 USD\nFREE: ${FREE} 💲 USD\n👉@digi_price`
         );
         console.log(new Date() + `cryptocurrency successfully posted!`);
       }
